@@ -90,13 +90,21 @@ export class InstallManager {
         composeContent.services.windows.environment.USERNAME = this.conf.username;
         composeContent.services.windows.environment.PASSWORD = this.conf.password;
 
-        if (composeContent.networks !== undefined) {
-            // composeContent.networks.default.enable_ipv6 = this.conf.enable_ipv6;
-            // composeContent.networks.default.enable_ipv4 = this.conf.enable_ipv4;
-
-            composeContent.networks.default.enable_ipv6 = true;
-            composeContent.networks.default.enable_ipv4 = true;
+        if (composeContent.networks === undefined) {
+            composeContent.networks = {
+                default: {
+                    driver: "bridge",
+                    enable_ipv6: true,
+                    enable_ipv4: true,
+                },
+            }
         }
+
+        // composeContent.networks.default.enable_ipv6 = this.conf.enable_ipv6;
+        // composeContent.networks.default.enable_ipv4 = this.conf.enable_ipv4;
+
+        composeContent.networks.default.enable_ipv6 = true;
+        composeContent.networks.default.enable_ipv4 = true;
 
         // Boot image mapping
         if (this.conf.customIsoPath) {
