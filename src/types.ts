@@ -56,8 +56,12 @@ export type ComposeConfig = {
     };
     networks?: {
         [key: string]: {
-            external: boolean;
+            external?: boolean;
+            driver?: string,
+            enable_ipv6?: boolean,
+            enable_ipv4?: boolean,
         };
+
     };
     services: {
         windows: {

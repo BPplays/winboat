@@ -11,6 +11,7 @@ export const DOCKER_DEFAULT_COMPOSE: ComposeConfig = {
             image: "ghcr.io/dockur/windows:5.14",
             container_name: "WinBoat",
             environment: {
+                NETWORK: "user",
                 VERSION: "11",
                 RAM_SIZE: "4G",
                 CPU_CORES: "4",
@@ -41,6 +42,14 @@ export const DOCKER_DEFAULT_COMPOSE: ComposeConfig = {
                 "./oem:/oem",
             ],
             devices: ["/dev/kvm"],
+        },
+    },
+
+    networks: {
+        default: {
+          driver: "bridge",
+          enable_ipv6: true,
+          enable_ipv4: true,
         },
     },
 };
